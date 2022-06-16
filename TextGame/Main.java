@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
@@ -11,17 +12,25 @@ public class Main {
 		Antag Enemy = new Antag ("Drone", "I always win!", "You cheated!");
 		Map gameMap = new Map(9,9, Hero, Enemy);
 		
-		playGame(gameMap);
+		try {
+			playGame(gameMap);
+		} catch (InputMismatchException | InvalidChoiceException e) {
+			e.printStackTrace();
+		}
 		
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Would you like to play again? Enter Y or N");
 		String opt = sc.nextLine();
 		
-		if(opt.equals("Y")) {
+		if(opt.toUpperCase().equals("Y")) {
 			gameOver = false;
-			playGame(gameMap);
+			try {
+				playGame(gameMap);
+			} catch (InputMismatchException | InvalidChoiceException e) {
+				e.printStackTrace();
+			}
 		}
-		else if (opt.equals("N")) {
+		else if (opt.toUpperCase().equals("N")) {
 			System.out.println("Thanks for playing!");
 			System.exit(0);
 		}
@@ -35,7 +44,7 @@ public class Main {
 		gameOver = true;
 	}
 	
-	public static void playGame(Map gameMap) {
+	public static void playGame(Map gameMap) throws InvalidChoiceException {
 		gameMap.initMap();
 		System.out.println("TargetX=" + gameMap.getTargetX() + " TargetY=" + gameMap.getTargetY());
 		System.out.println("PlayerX=" + gameMap.getProtagX() + " PlayerY=" + gameMap.getProtagY());
