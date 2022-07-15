@@ -1,0 +1,48 @@
+CREATE DATABASE clickerdb;
+USE clickerdb;
+
+-- ENABLE AFTER INIT FOR TESTING
+-- DROP TABLE achieved_ranks;
+-- DROP TABLE ranks;
+-- DROP TABLE players;
+
+CREATE TABLE players(
+player_id INT AUTO_INCREMENT,
+
+player_name VARCHAR(255) NOT NULL,
+catchphrase VARCHAR(255) NOT NULL,
+clicks int NOT NULL,
+-- format clicks in actions
+
+PRIMARY KEY (player_id)
+);
+
+CREATE TABLE ranks(
+rank_id INT,
+rank_name VARCHAR(20) NOT NULL,
+
+PRIMARY KEY (rank_id)
+);
+
+CREATE TABLE achieved_ranks(
+achievement_id INT AUTO_INCREMENT,
+cid INT,
+pid INT,
+
+PRIMARY KEY (achievement_id),
+FOREIGN KEY (cid) REFERENCES players(player_id),
+FOREIGN KEY (pid) REFERENCES ranks(rank_id)
+);
+
+INSERT INTO players (player_name, catchphrase, clicks) VALUES("Mario","Lets'a go!","999");
+SELECT * FROM players WHERE player_name LIKE "M%";
+
+INSERT INTO ranks (rank_id, rank_name) VALUES ("1","Novice");
+INSERT INTO ranks (rank_id, rank_name) VALUES ("2","Apprentice");
+INSERT INTO ranks (rank_id, rank_name) VALUES ("3","Graduate");
+INSERT INTO ranks (rank_id, rank_name) VALUES ("4","Master");
+
+INSERT INTO achieved_ranks (cid, pid) VALUES (1,4);
+SELECT * FROM achieved_ranks
+JOIN players ON players.player_id=achieved_ranks.cid
+JOIN ranks ON ranks.rank_id=achieved_ranks.pid;
