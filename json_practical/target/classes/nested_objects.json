@@ -1,0 +1,11 @@
+{
+	"name":"Chester", 
+	"age":32,
+	"car":"Corsa",
+	"address":{
+		"street":"123 My Street",
+		"city":"Manchester",
+		"county":"Greater Manchester",
+		"Postcode":"M11 1AA"
+	}
+}

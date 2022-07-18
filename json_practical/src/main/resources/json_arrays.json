@@ -1,0 +1,21 @@
+[ 
+	{
+		"first_name":"Chester",
+		"last_name":"Gardner",
+		"favourite_foods":{ 
+			"starter":"salad",
+			"main":"steak",
+			"dessert":"ice cream"
+		}
+	},
+	{ 
+		"first_name":"Sam",
+		"last_name":"Board",
+		"favourite_foods":{ 
+			"starter":"rarebit",
+			"main":"steak",
+			"dessert":"cheese board"
+		}
+	}
+]
+
